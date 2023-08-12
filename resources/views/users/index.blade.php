@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Book Store &rsaquo; Data Book</title>
+  <title>Book Store &rsaquo; Data users</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css">
@@ -55,7 +55,6 @@
             <li><a class="nav-link" href="/paymentmethod"><i class="fas fa-comments-dollar"></i> <span>Payment Method</span></a></li>
           </ul>
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini"></div>        
-        </aside>    
         </aside>
       </div>
       <!-- Main Content -->
@@ -64,18 +63,18 @@
           <div class="section-header">
             <div class="section-header-breadcrumb">
               <div class="breadcrumb-item active"><a href="#">Book Store</a></div>
-              <div class="breadcrumb-item"><a href="#">Data Book</a>
+              <div class="breadcrumb-item"><a href="#">Add Data user</a>
             </div>
             </div>
           </div>
           
           <h5>
-              <a href="/add-book"><i class="fa fa-plus">
-                Add Data Book</i>
+              <a href="/add-users"><i class="fa fa-plus">
+                Add Data User</i>
               </a></h5>
             <div class="row">
               <div class="col-12">            
-                <h1 class="m-0"> {{$books['book']}}</h1>
+                <h1 class="m-0"> {{$user['users']}}</h1>
                 <div class="card">
                   <div class="card-body">
                     <div class="table-responsive">
@@ -89,23 +88,31 @@
                   <table class="table table-striped" id="table-2">
                     <thead>
                       <tr>
-                        <th>Title</th>
-                        <th>Creator Id</th>
-                        <th>Amount</th>
-                        <th>Published Date</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Birthday</th>
+                        <th>Is Active</th>
+                        <th>Role</th>
                         <th>Opsi</th>
                       </tr>
                     </thead>
-                    @foreach($books as $book)
+                    @foreach($user as $users)
                     <tbody>
                       <tr>
-                        <td>{{ $book->title }}</td>
-                        <td>{{ $book->creator_id }}</td>
-                        <td>{{ $book->amount }}</td>
-                        <td>{{ $book->published_date }}</td>
+                        <td>{{ $users->name }}</td>
+                        <td>{{ $users->email }}</td>
+                        <td>{{ $users->password }}</td>
+                        <td>{{ $users->phone }}</td>
+                        <td>{{ $users->address }}</td>
+                        <td>{{ $users->birthday }}</td>
+                        <td>{{ $users->is_active }}</td>
+                        <td>{{ $users->role }}</td>
                         <td>
-                          <a class="far fa-edit" href="/book/{{$book->id}}"></a>
-                          <a class="fa fa-trash" href="/book/delete/{{$book->id}}"></a>
+                          <a class="far fa-edit" href="/users/{{$users->id}}"></a>
+                          <a class="fa fa-trash" href="/users/delete/{{$users->id}}"></a>
                         </td>
                       </tr>
                     </tbody>                         
@@ -117,33 +124,68 @@
           <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add Data Book</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Add Data User</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-            <form action="/add-book" method="post">
+            <form action="/add-users" method="post">
            {{ csrf_field() }}
 
                                 <div class="form-group">
-                                <label for="exampleInputEmail1" class="form-label">Title</label><br>
-                                <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                <label for="exampleInputEmail1" class="form-label">Name</label>
+                                <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                                 </div>
                                 <div class="form-group">
-                                <label for="exampleInputEmail1" class="form-label">Creator Id</label><br>
-                                <input type="number" name="creator_id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                <label for="exampleInputEmail1" class="form-label">Email</label>
+                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                                 </div>
                                 <div class="form-group">
-                                <label for="exampleInputEmail1" class="form-label">Amount</label><br>
-                                <input type="number" name="amount" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                <label for="exampleInputEmail1" class="form-label">Password Strength</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-lock"></i>
+                                        </div>
+                                     </div>
+                                     <input type="password" name="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                </div>
                                 <div class="form-group">
-                                <label for="exampleInputEmail1" class="form-label">Published Date</label><br>
-                                <input type="date" name="published_date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                                  </div>
-                                
+                                <label for="exampleInputEmail1" class="form-label">Phone Number</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    </div>
+                                    <input type="text" name="phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                </div>
+                                </div>
+                                <div class="form-group">
+                                <label for="exampleInputEmail1" class="form-label">Address</label>
+                                <input type="number" name="payment_method_id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                <div class="form-group">
+                                <label for="exampleInputEmail1" class="form-label">Birthday</label>
+                                <input type="date" name="qty" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="form-group">
+                                <label for="exampleInputEmail1" class="form-label">Is Active</label>
+                                <select name="is_active" class="form-control select2" multiple="">
+                                    <option>Active</option>
+                                    <option>Inactive</option>
+                                </select>
+                                <div class="form-group">
+                                <label for="exampleInputEmail1" class="form-label">Role</label>
+                                <select name="role" class="form-control select2" multiple="">
+                                    <option>Admin</option>
+                                    <option>Seller</option>
+                                    <option>Buyer</option>
+                                    <option>Publisher</option>
+                                </select>
+                                </div>
                                     <div class="modal-footer">
-                                    <a class="btn btn-danger" href="/book">back</a>
+                                    <a class="btn btn-danger" href="/users">back</a>
                                     <button  class="btn btn-success btn-sm">save</button>
                                     </div>
                                   </form>

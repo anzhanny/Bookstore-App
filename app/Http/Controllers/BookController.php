@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    /**
+/**
      * Display a listing of the resource.
      */
     public function index()
@@ -36,10 +36,10 @@ class BookController extends Controller
         $data->title = $title;
         $data->creator_id =  $creator_id;
         $data->amount =  $amount;
-        $data->published_date = $published_date;
+        $data->published_date =  $published_date;
         $data->save();
 
-        return redirect('/book');    
+        return redirect('/book');      
     }
 
     /**
@@ -53,7 +53,7 @@ class BookController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
+    public function edit($id)
     {
         $books = Book::find($id);
         return view ('book.edit', compact('books'));
@@ -68,14 +68,13 @@ class BookController extends Controller
         $creator_id = $request->input('created_id');
         $amount = $request->input('amount');
         $published_date = $request->input('published_date');
-        $data = Book::Find(id);
+        $data = Book::find($id);
         $data->title = $title;
         $data->creator_id =  $creator_id;
         $data->amount =  $amount;
-        $data->published_date = $published_date;
+        $data->published_date =  $published_date;
         $data->save();
-
-        return redirect('/book');  
+        return redirect('/book');      
     }
 
     /**
@@ -83,6 +82,10 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        ///delete sow
+        $books = Book::find($id);
+        $books->delete();
+        // return response()->json($faculties);
+        return redirect('/book');    
     }
 }

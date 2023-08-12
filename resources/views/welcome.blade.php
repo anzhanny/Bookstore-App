@@ -256,25 +256,13 @@
             <a href="index.html">Book Store</a>
           </div>
           <ul class="sidebar-menu">
-            <li class="menu-header">Dashboard</li>
-            <li class="dropdown active">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-              <ul class="dropdown-menu">
-            <li><a class="nav-link" href="blank.html"><i class="fas fa-book"></i> <span>Book</span></a></li>
-            </li>
+            <li class="menu-header">Book Store</li>
+            <li><a class="nav-link" href="/users"><i class="far fa-user"></i> <span>User</span></a></li>
+            <li><a class="nav-link" href="/book"><i class="fas fa-book"></i> <span>Book</span></a></li>
             <li class="menu-header">Payment</li>
-            <li><a class="nav-link" href="blank.html"><i class="fas fa-calculator"></i> <span>Transaction</span></a></li>
-            <li><a class="nav-link" href="blank.html"><i class="	fas fa-comments-dollar"></i> <span>Payment Method</span></a></li>
-            </li>
-
-      <footer class="main-footer">
-        <div class="footer-left">
-          Copyright &copy; 2023 <div class="bullet"></div> Design By <a href="https://www.instagram.com/sanzhanym/">Siti Anzhanny Marwa</a>
-        </div>
-        <div class="footer-right">
-          
-        </div>
-      </footer>
+            <li><a class="nav-link" href="/transaction"><i class="fas fa-calculator"></i> <span>Transaction</span></a></li>
+            <li><a class="nav-link" href="/paymentmethod"><i class="fas fa-comments-dollar"></i> <span>Payment Method</span></a></li>
+          </ul>
     </div>
   </div>
 

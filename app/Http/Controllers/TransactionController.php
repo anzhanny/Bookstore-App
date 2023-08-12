@@ -12,7 +12,7 @@ class TransactionController extends Controller
     public function index()
     {
         $transactions = Transaction::paginate(10);
-        return view ('transaction.index', compact('trasactions'));
+        return view ('transaction.index', compact('transactions'));
     }
 
     /**
@@ -83,7 +83,7 @@ class TransactionController extends Controller
         $discount = $request->input('discount');
         $total_payment = $request->input('total_payment');
         $status = $request->input('status');
-        $data = Transaction::find(id);
+        $data = Transaction::find($id);
         $data->buyer_id = $buyer_id;
         $data->book_id =  $book_id;
         $data->payment_method_id =  $payment_method_id;

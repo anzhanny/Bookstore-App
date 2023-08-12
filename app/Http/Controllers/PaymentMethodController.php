@@ -1,18 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\PaymentMethod;
+use App\Models\Paymentmethod;
 use Illuminate\Http\Request;
 
-class PaymentMethodController extends Controller
+class PaymentmethodController extends Controller
 {
 /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $paymentMethods = PaymentMethod::paginate(10);
-        return view ('paymentMethod.index', compact('paymentMeethods'));
+        $paymentmethods = Paymentmethod::paginate(10);
+        return view ('paymentmethod.index', compact('paymentmenthods'));
     }
 
     /**
@@ -20,7 +20,7 @@ class PaymentMethodController extends Controller
      */
     public function create()
     {
-        return view('paymentMethod.create');
+        return view('paymentmethod.create');
     }
 
     /**
@@ -31,14 +31,20 @@ class PaymentMethodController extends Controller
         $name = $request->input('title');
         $account_number = $request->input('created_id');
         $type = $request->input('amount');
-        $data = new PaymentMethod();
+        $data = new Paymentmethod();
         $data->name = $name;
         $data->account_number =  $account_number;
         $data->type =  $type;
         $data->save();
 
-        return redirect('/paymentMethod');      
+        return redirect('/paymentmethod');      
     }
+
+    public function boot()
+    {
+        Route::middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web.php'));}
 
     /**
      * Display the specified resource.
@@ -53,8 +59,8 @@ class PaymentMethodController extends Controller
      */
     public function edit( $id)
     {
-        $paymentMethods = PaymentMethod::find($id);
-        return view ('paymentMethod.edit', compact('paymentMethods'));
+        $paymentMethods = Paymentmethod::find($id);
+        return view ('paymentmethod.edit', compact('paymentmethods'));
     }
 
     /**
@@ -65,13 +71,13 @@ class PaymentMethodController extends Controller
         $name = $request->input('title');
         $account_number = $request->input('created_id');
         $type = $request->input('amount');
-        $data = PaymentMethod::find(id);
+        $data = Paymentmethod::find($id);
         $data->name = $name;
         $data->account_number =  $account_number;
         $data->type =  $type;
         $data->save();
 
-        return redirect('/paymentMethod');      
+        return redirect('/paymentmethod');      
     }
 
     /**
@@ -80,9 +86,10 @@ class PaymentMethodController extends Controller
     public function destroy(string $id)
     {
         ///delete sow
-        $paymentMethods = PaymentMethod::find($id);
+        $paymentMethods = Paymentmethod::find($id);
         $paymentMethods->delete();
         // return response()->json($faculties);
-        return redirect('/paymentMethod');    
+        return redirect('/paymentmethod');    
     }
 }
+

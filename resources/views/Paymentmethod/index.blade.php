@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Book Store &rsaquo; Data Book</title>
+  <title>Book Store &rsaquo; Data Payment Method</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css">
@@ -64,18 +64,18 @@
           <div class="section-header">
             <div class="section-header-breadcrumb">
               <div class="breadcrumb-item active"><a href="#">Book Store</a></div>
-              <div class="breadcrumb-item"><a href="#">Data Book</a>
+              <div class="breadcrumb-item"><a href="#">Data Payment Method</a>
             </div>
             </div>
           </div>
           
           <h5>
-              <a href="/add-book"><i class="fa fa-plus">
-                Add Data Book</i>
+              <a href="/add-paymentmethod"><i class="fa fa-plus">
+                Add Data Payment Method</i>
               </a></h5>
             <div class="row">
               <div class="col-12">            
-                <h1 class="m-0"> {{$books['book']}}</h1>
+                <h1 class="m-0"> {{$paymentmethods['paymentmethod']}}</h1>
                 <div class="card">
                   <div class="card-body">
                     <div class="table-responsive">
@@ -89,23 +89,21 @@
                   <table class="table table-striped" id="table-2">
                     <thead>
                       <tr>
-                        <th>Title</th>
-                        <th>Creator Id</th>
-                        <th>Amount</th>
-                        <th>Published Date</th>
+                        <th>Name</th>
+                        <th>Account Number</th>
+                        <th>Type</th>
                         <th>Opsi</th>
                       </tr>
                     </thead>
-                    @foreach($books as $book)
+                    @foreach($paymentmethods as $paymentmethod)
                     <tbody>
                       <tr>
-                        <td>{{ $book->title }}</td>
-                        <td>{{ $book->creator_id }}</td>
-                        <td>{{ $book->amount }}</td>
-                        <td>{{ $book->published_date }}</td>
+                        <td>{{ $paymentmethod->name }}</td>
+                        <td>{{ $paymentmethod->account_number }}</td>
+                        <td>{{ $paymentmethod->type }}</td>
                         <td>
-                          <a class="far fa-edit" href="/book/{{$book->id}}"></a>
-                          <a class="fa fa-trash" href="/book/delete/{{$book->id}}"></a>
+                          <a class="far fa-edit" href="/paymentmethod/{{$paymentmethod->id}}"></a>
+                          <a class="fa fa-trash" href="/paymentmethod/delete/{{$paymentmethod->id}}"></a>
                         </td>
                       </tr>
                     </tbody>                         
@@ -117,33 +115,31 @@
           <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add Data Book</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Add Data Payment Method</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-            <form action="/add-book" method="post">
+            <form action="/add-paymentmethod" method="post">
            {{ csrf_field() }}
 
                                 <div class="form-group">
-                                <label for="exampleInputEmail1" class="form-label">Title</label><br>
-                                <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                <label for="exampleInputEmail1" class="form-label">Name</label><br>
+                                <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                                 </div>
                                 <div class="form-group">
-                                <label for="exampleInputEmail1" class="form-label">Creator Id</label><br>
-                                <input type="number" name="creator_id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                <label for="exampleInputEmail1" class="form-label">Account Number</label><br>
+                                <input type="number" name="account_number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                                 </div>
                                 <div class="form-group">
-                                <label for="exampleInputEmail1" class="form-label">Amount</label><br>
-                                <input type="number" name="amount" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                                <div class="form-group">
-                                <label for="exampleInputEmail1" class="form-label">Published Date</label><br>
-                                <input type="date" name="published_date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                                  </div>
+                                <label for="exampleInputEmail1" class="form-label">Type</label><br>
+                                <input type="text" name="type" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                </div>
+
                                 
                                     <div class="modal-footer">
-                                    <a class="btn btn-danger" href="/book">back</a>
+                                    <a class="btn btn-danger" href="/paymentmethod">back</a>
                                     <button  class="btn btn-success btn-sm">save</button>
                                     </div>
                                   </form>

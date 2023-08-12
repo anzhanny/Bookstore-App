@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Book Store &rsaquo; Data Book</title>
+  <title>Book Store &rsaquo; Data Transaction</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css">
@@ -55,7 +55,6 @@
             <li><a class="nav-link" href="/paymentmethod"><i class="fas fa-comments-dollar"></i> <span>Payment Method</span></a></li>
           </ul>
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini"></div>        
-        </aside>    
         </aside>
       </div>
       <!-- Main Content -->
@@ -64,18 +63,18 @@
           <div class="section-header">
             <div class="section-header-breadcrumb">
               <div class="breadcrumb-item active"><a href="#">Book Store</a></div>
-              <div class="breadcrumb-item"><a href="#">Data Book</a>
+              <div class="breadcrumb-item"><a href="#">Data Transaction</a>
             </div>
             </div>
           </div>
           
           <h5>
-              <a href="/add-book"><i class="fa fa-plus">
-                Add Data Book</i>
+              <a href="/add-transaction"><i class="fa fa-plus">
+                Add Data Transaction</i>
               </a></h5>
             <div class="row">
               <div class="col-12">            
-                <h1 class="m-0"> {{$books['book']}}</h1>
+                <h1 class="m-0"> {{$transactions['transaction']}}</h1>
                 <div class="card">
                   <div class="card-body">
                     <div class="table-responsive">
@@ -89,23 +88,33 @@
                   <table class="table table-striped" id="table-2">
                     <thead>
                       <tr>
-                        <th>Title</th>
-                        <th>Creator Id</th>
-                        <th>Amount</th>
-                        <th>Published Date</th>
+                        <th>Buyer Id</th>
+                        <th>Book Id</th>
+                        <th>Payment Method Id</th>
+                        <th>QTY</th>
+                        <th>Price</th>
+                        <th>PPN</th>
+                        <th>Discount</th>
+                        <th>Total Payment</th>
+                        <th>Status</th>
                         <th>Opsi</th>
                       </tr>
                     </thead>
-                    @foreach($books as $book)
+                    @foreach($transactions as $transaction)
                     <tbody>
                       <tr>
-                        <td>{{ $book->title }}</td>
-                        <td>{{ $book->creator_id }}</td>
-                        <td>{{ $book->amount }}</td>
-                        <td>{{ $book->published_date }}</td>
+                        <td>{{ $transaction->buyer_id }}</td>
+                        <td>{{ $transaction->book_id }}</td>
+                        <td>{{ $transaction->payment_method_id }}</td>
+                        <td>{{ $transaction->qty }}</td>
+                        <td>{{ $transaction->price }}</td>
+                        <td>{{ $transaction->ppn }}</td>
+                        <td>{{ $transaction->discount }}</td>
+                        <td>{{ $transaction->total_payment }}</td>
+                        <td>{{ $transaction->status }}</td>
                         <td>
-                          <a class="far fa-edit" href="/book/{{$book->id}}"></a>
-                          <a class="fa fa-trash" href="/book/delete/{{$book->id}}"></a>
+                          <a class="far fa-edit" href="/transaction/{{$transaction->id}}"></a>
+                          <a class="fa fa-trash" href="/transaction/delete/{{$transaction->id}}"></a>
                         </td>
                       </tr>
                     </tbody>                         
@@ -117,33 +126,54 @@
           <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add Data Book</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Add Data transaction</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-            <form action="/add-book" method="post">
+            <form action="/add-transaction" method="post">
            {{ csrf_field() }}
 
                                 <div class="form-group">
-                                <label for="exampleInputEmail1" class="form-label">Title</label><br>
-                                <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                <label for="exampleInputEmail1" class="form-label">Buyer Id</label><br>
+                                <input type="text" name="buyer_id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                                 </div>
                                 <div class="form-group">
-                                <label for="exampleInputEmail1" class="form-label">Creator Id</label><br>
-                                <input type="number" name="creator_id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                <label for="exampleInputEmail1" class="form-label">Book Id</label><br>
+                                <input type="number" name="book_id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                                 </div>
                                 <div class="form-group">
-                                <label for="exampleInputEmail1" class="form-label">Amount</label><br>
-                                <input type="number" name="amount" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                <label for="exampleInputEmail1" class="form-label">Payment Method Id</label><br>
+                                <input type="number" name="payment_method_id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                                 <div class="form-group">
-                                <label for="exampleInputEmail1" class="form-label">Published Date</label><br>
-                                <input type="date" name="published_date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                                  </div>
-                                
+                                <label for="exampleInputEmail1" class="form-label">QTY</label><br>
+                                <input type="date" name="qty" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="form-group">
+                                <label for="exampleInputEmail1" class="form-label">Price</label><br>
+                                <input type="text" name="price" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="form-group">
+                                <label for="exampleInputEmail1" class="form-label">PPN</label><br>
+                                <input type="number" name="ppn" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="form-group">
+                                <label for="exampleInputEmail1" class="form-label">Discount</label><br>
+                                <input type="number" name="discount" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                <div class="form-group">
+                                <label for="exampleInputEmail1" class="form-label">Total Payment</label><br>
+                                <input type="date" name="total_payment" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                </div>
+                                <div class="form-group">
+                                <label for="exampleInputEmail1" class="form-label">Status</label>
+                                <select name="status"class="form-control"  id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                  <option>Success</option>
+                                  <option>failure</option>
+                                </select>
+                              </div>
                                     <div class="modal-footer">
-                                    <a class="btn btn-danger" href="/book">back</a>
+                                    <a class="btn btn-danger" href="/transaction">back</a>
                                     <button  class="btn btn-success btn-sm">save</button>
                                     </div>
                                   </form>
